@@ -34,12 +34,18 @@ const PageSearch = () => {
         
         <div>
 {
-    listFilms.map((el)=>{
-if(el.media_type === 'movie')(
-    <MovieCard movie={el}/>
-
-)
-
+    listFilms.map((list)=>{
+        switch(list.media_type) {
+            case 'movie':
+            return    <MovieCard movie={list} />;
+            case 'tv':
+            return    <TvCard tv={list} />;
+            case 'person':
+             return <PersonCard person={list} />;
+            default:
+              return null;
+          }
+ 
 })
     
 }
