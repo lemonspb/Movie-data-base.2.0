@@ -10,8 +10,8 @@ const [ film, setFilm] = useState('')
 const getfilmName =(event:any)=>{
 setFilm(event.target.value)
     }
-    const pageNumber = (pages:string) => {
-        history.push(`${pages}`);
+    const query = (name:string) => {
+        history.push(`${name}`);
       };    
 
 
@@ -22,7 +22,7 @@ setFilm(event.target.value)
         >
         <input />
         
-        <Link  to={`/search/?q=${film}`} onClick={()=>{pageNumber(film)}}>Search</Link>
+        <Link  to={`/search?q=${film}`} onClick={()=>{query(film)}}>Search</Link>
       </Input>
       )
 }

@@ -10,7 +10,7 @@ const App: React.FC = () => {
     <div className="app">
       <Router>
     <Search />
-    <Route  path='/search/'  exact render={()=> <PageSearch /> }/>
+    <Route  path='/search'  exact render={()=> <PageSearch /> }/>
 </Router>
     </div>
   );
