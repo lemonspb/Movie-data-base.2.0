@@ -14,7 +14,7 @@ const PageSearch = () => {
     dataBaseServises.getSearchQuery(nameFilmFromUrl).then((result)=>{
         setListFilms(result)
     })
-    }, [nameFilmFromUrl])
+    }, [dataBaseServises,nameFilmFromUrl])
 
     return (
 

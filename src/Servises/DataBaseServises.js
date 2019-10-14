@@ -1,7 +1,7 @@
 export default class DataBaseServises {
      API_KEY   = '23315c01cb32eba5fcb03d0ad0a1ef43';
      BASE_URL  = "https://api.themoviedb.org/3";
-    SEARCH_PARAMS  = `api_key=${this.API_KEY}&language=ru`;
+     SEARCH_PARAMS  = `api_key=${this.API_KEY}&language=ru`;
 
     getResource = async (type) => {
       const res = await fetch(`${this.BASE_URL}${type}&${this.SEARCH_PARAMS}`);
@@ -19,7 +19,11 @@ export default class DataBaseServises {
    
     };
   
-
+    getIdMovie = async (id) => {
+      const res = await this.getResource(`/movie/${id}?`);
+      return res
+   
+    };
   
 
   }

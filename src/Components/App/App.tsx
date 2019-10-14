@@ -1,7 +1,8 @@
 import React from 'react';
 import Search from '../Header/Header';
 import PageSearch from '../PageSearch/PageSearch'
-import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import MoviePage  from '../ DetailPages/MoviePage'
+import {BrowserRouter as Router,  Route } from 'react-router-dom';
 const App: React.FC = () => {
 
 
@@ -11,6 +12,8 @@ const App: React.FC = () => {
       <Router>
     <Search />
     <Route  path='/search'  exact render={()=> <PageSearch /> }/>
+    <Route  path='/movie/:id'  exact render={({match})=> <MoviePage  id={match.params.id}/>}/>
+
 </Router>
     </div>
   );
