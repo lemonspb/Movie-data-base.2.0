@@ -1,4 +1,4 @@
-export default class DataBaseServises {
+export default class DataBaseServiсes {
      API_KEY   = '23315c01cb32eba5fcb03d0ad0a1ef43';
      BASE_URL  = "https://api.themoviedb.org/3";
      SEARCH_PARAMS  = `api_key=${this.API_KEY}&language=ru`;
@@ -25,5 +25,11 @@ export default class DataBaseServises {
    
     };
   
+    getPopularMovieList = async () => {
+      const res = await this.getResource('/movie/popular?');
+      return res
+   
+    };
+
 
   }

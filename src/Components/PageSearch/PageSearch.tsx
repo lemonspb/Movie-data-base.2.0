@@ -3,18 +3,18 @@ import { useHistory } from "react-router-dom";
 import { MovieCard, Movie } from '../Cards/MovieCard'
 import { TvCard, TV } from '../Cards/TVCard'
 import { PersonCard, Person } from '../Cards/PersonCard'
-import DataBaseServises from '../../Servises/DataBaseServises'
+import DataBaseServiсes from '../../Serviсes/DataBaseServiсes'
 const PageSearch = () => {
 
     const history = useHistory();
     const nameFilmFromUrl: string = decodeURI(history.location.search.split('=')[1])
-     const dataBaseServises = new DataBaseServises();
+     const dataBaseServiсes = new DataBaseServiсes();
     const [listFilms, setListFilms] = useState<(Movie | TV | Person)[]>([]);
     useEffect(() => {
-    dataBaseServises.getSearchQuery(nameFilmFromUrl).then((result)=>{
+        dataBaseServiсes.getSearchQuery(nameFilmFromUrl).then((result)=>{
         setListFilms(result)
     })
-    }, [dataBaseServises,nameFilmFromUrl])
+    }, [dataBaseServiсes,nameFilmFromUrl])
 
     return (
 

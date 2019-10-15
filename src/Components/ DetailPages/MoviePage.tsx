@@ -1,17 +1,17 @@
 import React,{useEffect} from 'react';
-import DataBaseServises from '../../Servises/DataBaseServises'
+import DataBaseServices from '../../Serviсes/DataBaseServiсes'
 
 
 
  function MoviePage({id}:{id:number}) {
 
-    const dataBaseServises = new DataBaseServises();
+    const dataBaseServices = new DataBaseServices();
     useEffect(() => {
         console.log(id)
-        dataBaseServises.getIdMovie(id).then((result)=>{
+        dataBaseServices.getIdMovie(id).then((result)=>{
             console.log(result)
             })
-    }, [dataBaseServises,id])
+    }, [dataBaseServices,id])
    
 
     return (
