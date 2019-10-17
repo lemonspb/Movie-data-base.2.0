@@ -15,8 +15,10 @@ setFilm(event.target.value)
     const query = (name:string) => {
         history.push(`${name}`);
       };    
+    
 
 
+    
     return (  
      <>
    {currentUser?'зареган':'не зареган'}  

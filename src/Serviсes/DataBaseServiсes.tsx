@@ -1,9 +1,9 @@
 export default class DataBaseServiсes {
-     API_KEY   = '23315c01cb32eba5fcb03d0ad0a1ef43';
-     BASE_URL  = "https://api.themoviedb.org/3";
-     SEARCH_PARAMS  = `api_key=${this.API_KEY}&language=ru`;
+     API_KEY:string   = '23315c01cb32eba5fcb03d0ad0a1ef43';
+     BASE_URL:string  = "https://api.themoviedb.org/3";
+     SEARCH_PARAMS:string  = `api_key=${this.API_KEY}&language=ru`;
 
-    getResource = async (type) => {
+    getResource = async (type:string) => {
       const res = await fetch(`${this.BASE_URL}${type}&${this.SEARCH_PARAMS}`);
   
       if (!res.ok) {
@@ -13,16 +13,15 @@ export default class DataBaseServiсes {
       return await res.json();
     };
   
-    getSearchQuery = async (name) => {
+    getSearchQuery = async (name:string) => {
       const res = await this.getResource(`/search/multi?query=${name}`);
       return res.results
    
     };
   
-    getIdMovie = async (id) => {
+    getSpecificMovieInfo = async (id:number) => {
       const res = await this.getResource(`/movie/${id}?`);
-      return res
-   
+      return this._transformMovie(res);
     };
   
     getPopularMovieList = async () => {
@@ -30,6 +29,13 @@ export default class DataBaseServiсes {
       return res
    
     };
-
+    _transformMovie = (movie:any) => {
+      return {
+        id: movie.id,
+        title: movie.title,
+        poster_path: movie.poster_path,
+       
+      }
+    }
 
   }
