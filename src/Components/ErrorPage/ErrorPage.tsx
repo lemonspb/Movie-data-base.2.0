@@ -10,7 +10,7 @@ export default class ErrorPage extends Component {
         return (
 
             <div>
-                <img src ={ErrorImg}/>
+                <img src ={ErrorImg} alt='Error404'/>
                 <Link to='/movie'>На главную</Link>
             </div>
 

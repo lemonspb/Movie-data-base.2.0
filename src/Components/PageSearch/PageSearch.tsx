@@ -23,9 +23,9 @@ const PageSearch = () => {
                 listFilms.map((list) => {
                     switch (list.media_type) {
                         case 'movie':
-                            return <MovieCard movie={list} />;
+                            return <MovieCard movie={list} key={list.id}/>;
                         case 'tv':
-                            return <TvCard tv={list} />;
+                            return <TvCard tv={list} key={list.id}/>;
                         case 'person':
                             return <PersonCard person={list} />;
                         default:

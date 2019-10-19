@@ -2,9 +2,12 @@ export default class DataBaseServiсes {
      API_KEY:string   = '23315c01cb32eba5fcb03d0ad0a1ef43';
      BASE_URL:string  = "https://api.themoviedb.org/3";
      SEARCH_PARAMS:string  = `api_key=${this.API_KEY}&language=ru`;
-
+       controller = new AbortController();
+       signal = this.controller.signal
     getResource = async (type:string) => {
-      const res = await fetch(`${this.BASE_URL}${type}&${this.SEARCH_PARAMS}`);
+      const res = await fetch(`${this.BASE_URL}${type}&${this.SEARCH_PARAMS}`,{
+        signal: this.signal
+      });
   
       if (!res.ok) {
         throw new Error(`Could not fetch ${type}` +
@@ -37,5 +40,7 @@ export default class DataBaseServiсes {
        
       }
     }
-
+   abort(){
+    return this.controller.abort()
+   }
   }

@@ -26,7 +26,7 @@ return (
         <>
      <Link to={`/movie/${movie.id}`}><div className="card-movie">
         
-         <img src={`${imgUrl}${movie.poster_path }`} />
+         <img src={`${imgUrl}${movie.poster_path }`}  alt={movie.title}/>
          <div className='overlay'>
          <div>{movie.title}</div>
          <div>{movie.overview}</div>

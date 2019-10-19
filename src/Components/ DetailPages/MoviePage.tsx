@@ -8,12 +8,17 @@ import { AuthContext } from "../../Auth/Auth";
 function MoviePage({ id }: { id: number }) {
     const { currentUser } = useContext(AuthContext);
     const [movieInfo, setMovieInfo] = useState()
-    const dataBaseServices = new DataBaseServices();
     useEffect(() => {
+        const dataBaseServices = new DataBaseServices();
+
         dataBaseServices.getSpecificMovieInfo(id).then((result) => {
             setMovieInfo(result.id)
             setMovieInfo(result)
         })
+       return function name() {
+            dataBaseServices.abort()    
+        }
+        
 
     }, [id])
         function writeUserData(userId: any, id: any, title: any, imageUrl: any): void {
@@ -27,13 +32,10 @@ function MoviePage({ id }: { id: number }) {
        
     }
    
-    if(movieInfo){
-        console.log(movieInfo.id)
-    }
-    
+
     return (
         <>
-            {movieInfo?currentUser?<button onClick={()=>writeUserData(currentUser.uid, movieInfo.id, movieInfo.title, movieInfo.poster_path )}>fdf</button>:null
+            {movieInfo?currentUser?<button onClick={()=>writeUserData(currentUser.uid, movieInfo.id, movieInfo.title, movieInfo.poster_path )}>добавить в избранное</button>:null
 
             :null}
         </>
