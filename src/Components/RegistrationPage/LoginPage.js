@@ -7,8 +7,6 @@ const Login = ({ history }) => {
   const handleLogin = useCallback(
     async event => {
       event.preventDefault();
-      console.log(event.target.elements)
-
       const { email, password } = event.target.elements;
       try {
         await app
@@ -16,7 +14,7 @@ const Login = ({ history }) => {
           .signInWithEmailAndPassword(email.value, password.value);
         history.push("/");
       } catch (error) {
-        alert(error);
+        alert('зарегайся пидор');
       }
     },
     [history]
@@ -30,7 +28,7 @@ const Login = ({ history }) => {
 
   return (
     <div>
-      <h1>Log in</h1>
+      <h1>Войти</h1>
       <form onSubmit={handleLogin}>
         <label>
           Email
@@ -40,7 +38,7 @@ const Login = ({ history }) => {
           Password
           <input name="password" type="password" placeholder="Password" />
         </label>
-        <button type="submit">Log in</button>
+        <button type="submit">Зарегестрироваться</button>
       </form>
     </div>
   );

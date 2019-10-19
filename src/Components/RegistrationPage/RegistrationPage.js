@@ -5,7 +5,6 @@ import app from "../../Serviсes/base";
 const SignUp = ({ history }) => {
   const handleSignUp = useCallback(async event => {
     event.preventDefault();
-    console.log(event)
     const { email, password } = event.target.elements;
     try {
       await app
@@ -13,7 +12,7 @@ const SignUp = ({ history }) => {
         .createUserWithEmailAndPassword(email.value, password.value);
       history.push("/");
     } catch (error) {
-      alert(error);
+      alert('ты уже зареган пидор');
     }
   }, [history]);
 

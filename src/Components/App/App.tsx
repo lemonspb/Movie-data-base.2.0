@@ -7,7 +7,8 @@ import {AuthProvider} from '../../Auth/Auth'
 import RegistrationPage from '../RegistrationPage/RegistrationPage'
 import LoginPage from '../RegistrationPage/LoginPage'
 import {FavoritePage} from '../FavoritePage/FavoritePage'
-import {BrowserRouter as Router,  Route } from 'react-router-dom';
+import ErrorPage  from '../ErrorPage/ErrorPage'
+import {BrowserRouter as Router,  Route,Switch, Redirect } from 'react-router-dom';
 const App: React.FC = () => {
 
 
@@ -17,13 +18,17 @@ const App: React.FC = () => {
        <AuthProvider>
       <Router>
     <Search />
+<Switch>
     <Route  path='/search'  exact render={()=> <PageSearch /> }/>
-    <Route  path='/movie/'  exact render={ ()=> <GeneralMoviePage />}/>
     <Route  path='/regist/'  exact render={ ()=> <RegistrationPage />}/>
     <Route  path='/login/'  exact render={ ()=> <LoginPage />}/>
     <Route  path='/favorite/'  exact render={ ()=> <FavoritePage />}/>
-    <Route  path='/movie/:id'  exact render={({match})=> <MoviePage  id={match.params.id}/>}/>
-
+    <Route  path='/movie/'  exact render={ ()=> <GeneralMoviePage />}/>
+    <Route  path='/movie/:id'  exact render={({match})=> <MoviePage  id={match.params.id}/>} />
+    <Route  path='/movie/'  exact render={ ()=> <GeneralMoviePage />}/>
+    <Route path='/error-page'  component ={ErrorPage} />
+    <Redirect to='/error-page' />
+    </Switch>
 </Router>
 </AuthProvider>
     </div>

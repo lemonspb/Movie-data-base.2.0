@@ -69,7 +69,12 @@ setFilm(event.target.value)
               </NavLink> 
     } 
         
-   
+      {currentUser?<NavLink to='/favorite' >
+    <Menu.Item
+    className='header-nav__item' 
+    color='red'
+    name=' Избранное'
+    /></ NavLink>:null}  
     </Container>
 
 

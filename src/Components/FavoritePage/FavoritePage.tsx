@@ -4,23 +4,43 @@ import app from '../../Serviсes/base'
 
 
 export function FavoritePage() {
-    const imgUrl = 'https://image.tmdb.org/t/p/w300/'
-        ;
+    const imgUrl = 'https://image.tmdb.org/t/p/w300/';
     const { currentUser } = useContext(AuthContext);
-    const [listBestFilms, setListBestFilms] = useState({})
-    const starCountRef = app.database().ref('users/');
-    if (app.auth().currentUser !== null) {
-        starCountRef.once('value', async (snapshot) => {
-            const listUsers = await snapshot.val()
-            console.log(listUsers[currentUser.uid].films)
-            Object.entries(listUsers[currentUser.uid].films).map((el) => el[1])
-        });
+    const [listBestFilms, setListBestFilms] = useState([])
+    const base = app.database().ref('users/');
+    const films: any  = []
+    const removeFilm = (id: any) => {
+        const base = app.database().ref(`users/${currentUser.uid}/films/${id}`);
+        base.remove()
     }
+    useEffect(() => {
+        if (!currentUser) {
+            return;
+        }
+        base.once('value', (snapshot) => {
+            const listUsers = snapshot.val()
+            if (listUsers[currentUser.uid]) {
+                Object.entries(listUsers[currentUser.uid].films).forEach((el) => films.push(el[1]))
+                setListBestFilms(films)
+                console.log(films)
 
-    return (
+            }
+
+        });
+
+    }, []);
+
+     return (
         <>
             <div>
+                {listBestFilms.map((el: any) => {
+                    return <div>
 
+                        <h3>{el.title}</h3>
+                        <img src={`${imgUrl}${el.imageUrl}`} />
+                        <button onClick={() => { removeFilm(el.id) }}>удалить</button>
+                    </div>
+                })}
             </div>
 
         </>

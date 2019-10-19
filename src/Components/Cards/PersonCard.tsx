@@ -3,8 +3,7 @@ import React from 'react';
 
 export interface Person {
     media_type: 'person',
-
-         name: string,
+        name: string,
         id: number,
         known_for_department:string,
         profile_path:string

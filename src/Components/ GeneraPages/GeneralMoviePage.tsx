@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import DataBaseServices from '../../Serviсes/DataBaseServiсes'
 import { MovieCard, Movie } from '../Cards/MovieCard'
+import {Container } from 'semantic-ui-react';
 
 
 
@@ -17,15 +18,15 @@ import { MovieCard, Movie } from '../Cards/MovieCard'
     }, [])
 
     return (
-        <div className="card">
+        <Container>
         {listFilms.map((film)=>(
 
-<MovieCard movie={film} />
+<MovieCard movie={film} key={film.id}/>
         )
     
 
         )}
-        </div>
+        </Container>
     );
 }
 export  default GeneralMoviePage
