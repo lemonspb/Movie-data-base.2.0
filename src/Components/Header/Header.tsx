@@ -1,8 +1,9 @@
 import React, {useState,useContext} from 'react'
 import { NavLink,withRouter } from 'react-router-dom'
-import { Menu ,Input, Container } from 'semantic-ui-react';
+import { Menu ,Input, Container,Image } from 'semantic-ui-react';
 import app from '../../Serviсes/base'
 import { AuthContext } from "../../Auth/Auth";
+import './Header.scss';
 
   function Search({history}:{history:any}){
 
@@ -16,12 +17,11 @@ setFilm(event.target.value)
         history.push(`${name}`);
       };    
     
-
+console.log(currentUser.displayName)
 
     
     return (  
      <>
-   {currentUser?'зареган':'не зареган'}  
         <Menu  stackable pointing secondary className='header-nav'>
         <Container>
     <NavLink   to='/movie'>
@@ -75,6 +75,12 @@ setFilm(event.target.value)
     color='red'
     name=' Избранное'
     /></ NavLink>:null}  
+   
+
+{currentUser?<NavLink to='/private' >
+    <Image src={`${currentUser.photoURL}`} avatar />
+    <span>{currentUser.displayName}</span>
+    </NavLink>:null}
     </Container>
 
 
@@ -83,11 +89,12 @@ setFilm(event.target.value)
     <Input type='text' placeholder='Search...'
         onChange={getfilmName}
         value={film}
+        className='search-input'
         >
-        <input />
         
-        <NavLink  to={`/search?q=${film}`} onClick={()=>{query(film)}}>Search</NavLink>
+        
       </Input>
+      <NavLink  to={`/search?q=${film}`} onClick={()=>{query(film)}}>Search</NavLink>
      </Container>
     </>
       )
