@@ -17,7 +17,7 @@ setFilm(event.target.value)
         history.push(`${name}`);
       };    
     
-console.log(currentUser.displayName)
+
 
     
     return (  
