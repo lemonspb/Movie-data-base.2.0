@@ -15,8 +15,8 @@ function MoviePage({ id }: { id: number }) {
   const addComment = () => {
     app
       .database()
-      .ref("film-comments/" + `/${id}/${currentUser.uid}/${new Date()}`)
-      .set({
+      .ref("film-comments/" + `/${id}/`)
+      .push({
         user: currentUser.displayName,
         comment,
         date: new Date().toLocaleString()
@@ -44,19 +44,19 @@ function MoviePage({ id }: { id: number }) {
         .ref("film-comments/")
         .on("value", snapshot => {
           const commentRef = snapshot.val();
-          if (commentRef[id]) {
-            
-           Object.values(commentRef[id]).map((el:any)=>{
-               console.log(el)
-            setListComments((prevState:any) => ([...prevState,...Object.values(el)]));
-
-           
-           })
-          }
+          const arr = [];
+          for (const comment in commentRef[id]) {
+            arr.push({
+                user: commentRef[id][comment].user,
+                comment: commentRef[id][comment].comment,
+                date: commentRef[id][comment].date
+              });
+              setListComments(arr)
+        }
         });
     }
   }, [id]);
-  console.log(listComments)
+
   function writeUserData(
     userId: any,
     id: any,
@@ -94,11 +94,13 @@ function MoviePage({ id }: { id: number }) {
       <input type="text" onChange={onComment} />
       <button onClick={addComment}>добавить комментарий</button>
       {listComments
-        ? listComments.map((comments: any) => {
-            console.log(comments.comment)
+        ?Object.values(listComments).map((comments: any) => {
+            console.log(comments)
                        return (<div>
                   <div>{comments.comment}</div>
                   <div>{comments.user}</div>
+                  <div>{comments.date}</div>
+
                 </div>
               );
               
