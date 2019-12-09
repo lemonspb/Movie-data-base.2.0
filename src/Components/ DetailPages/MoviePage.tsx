@@ -19,8 +19,8 @@ function MoviePage({ id }: { id: number }) {
       .database()
       .ref("film-comments/" + `/${id}/`)
       .push({
-        user: 'неизвестно' || currentUser.displayName,
-        userImg:  avatar || currentUser.photoURL ,
+        user:  currentUser? currentUser.displayName:'неизвестно' ,
+        userImg: currentUser? currentUser.photoURL: avatar ,
         comment,
         date: new Date().toLocaleString()
       });
