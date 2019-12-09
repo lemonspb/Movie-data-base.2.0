@@ -2,6 +2,8 @@ import React, { useEffect, useContext, useState } from "react";
 import DataBaseServices from "../../Serviсes/DataBaseServiсes";
 import app from "../../Serviсes/base";
 import { AuthContext } from "../../Auth/Auth";
+import { Button, Comment, Form, Header, Image,Container } from 'semantic-ui-react'
+import  avatar from '../../img/9146052847594.jpeg'
 
 function MoviePage({ id }: { id: number }) {
   const { currentUser } = useContext(AuthContext);
@@ -17,7 +19,8 @@ function MoviePage({ id }: { id: number }) {
       .database()
       .ref("film-comments/" + `/${id}/`)
       .push({
-        user: currentUser.displayName,
+        user: 'неизвестно' || currentUser.displayName,
+        userImg:  avatar || currentUser.photoURL ,
         comment,
         date: new Date().toLocaleString()
       });
@@ -49,6 +52,7 @@ function MoviePage({ id }: { id: number }) {
             arr.push({
                 user: commentRef[id][comment].user,
                 comment: commentRef[id][comment].comment,
+                userImg: commentRef[id][comment].userImg,
                 date: commentRef[id][comment].date
               });
               setListComments(arr)
@@ -74,6 +78,7 @@ function MoviePage({ id }: { id: number }) {
 
   return (
     <>
+    <Container>
       {movieInfo ? (
         currentUser ? (
           <button
@@ -91,22 +96,30 @@ function MoviePage({ id }: { id: number }) {
         ) : null
       ) : null}
 
-      <input type="text" onChange={onComment} />
-      <button onClick={addComment}>добавить комментарий</button>
+
       {listComments
         ?Object.values(listComments).map((comments: any) => {
-            console.log(comments)
-                       return (<div>
-                  <div>{comments.comment}</div>
-                  <div>{comments.user}</div>
-                  <div>{comments.date}</div>
-
-                </div>
+                       return (
+                    <Comment>
+                    <Image src={`${comments.userImg}`} avatar/>
+                    <Comment.Content>
+                      <Comment.Author >Имя: {comments.user }</Comment.Author>
+                      <Comment.Metadata>
+                        <div>{comments.date}</div>
+                      </Comment.Metadata>
+                      <Comment.Text>{comments.comment}</Comment.Text>
+                    
+                    </Comment.Content>
+                  </Comment>
               );
               
           })
-
         : null}
+        <Form reply>
+      <Form.TextArea onChange={onComment}/>
+      <Button content='добавить комментарий' labelPosition='left' icon='edit' primary  onClick={addComment}/>
+    </Form>
+        </Container>
     </>
   );
 }

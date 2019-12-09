@@ -51,6 +51,8 @@ setFilm(event.target.value)
     </NavLink>
     {currentUser?
          <Menu.Item
+         className='header-nav__item' 
+
          name='выйти'
          onClick={()=>{app.auth().signOut()}}
          />  :<NavLink to='/regist'>
@@ -77,7 +79,11 @@ setFilm(event.target.value)
     /></ NavLink>:null}  
    
 
-{currentUser?<NavLink to='/private' >
+{currentUser?
+<NavLink to='/private'
+
+className='header-nav__item header-nav__item--private'
+>
     <Image src={`${currentUser.photoURL}`} avatar />
     <span>{currentUser.displayName}</span>
     </NavLink>:null}
