@@ -24,7 +24,8 @@ return format(new Date(date),'d MMMM yyyy',{locale: ru})
 
 return (
         <>
-     <Link to={`/movie/${movie.id}`}><div className="card-movie">
+     <Link to={`/movie/${movie.id}`} className="card-movie">
+         <div className="card-movie__inner">
         
          <img src={`${imgUrl}${movie.poster_path }`}  alt={movie.title}/>
          <div className='overlay'>

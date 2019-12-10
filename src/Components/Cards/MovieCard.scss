@@ -1,13 +1,16 @@
+
 .card-movie{
+width: 33.3333%;
+padding: 0 15px 10px 15px;
+
+&__inner{
     display: flex;
     height: 100%;
     border: 2px solid #888;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     box-sizing: border-box;
-    margin-bottom: 40px;
     animation-name: scale;
     animation-duration: 0.5s;
-    margin-left: 10px;
      outline: 0;
     position: relative;
     max-width: 300px;
@@ -27,6 +30,7 @@
          
         }
     }
+}
 }
 .overlay{
     padding: 15px;

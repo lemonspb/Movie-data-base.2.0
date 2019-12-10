@@ -2,6 +2,7 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "../../Serviсes/base";
 import { AuthContext } from "../../Auth/Auth";
+import { Button, Checkbox, Form,Container } from 'semantic-ui-react';
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -27,20 +28,21 @@ const Login = ({ history }) => {
   }
 
   return (
-    <div>
-      <h1>Войти</h1>
-      <form onSubmit={handleLogin}>
-        <label>
-          Email
-          <input name="email" type="email" placeholder="Email" />
-        </label>
-        <label>
-          Password
+
+        <Container>
+        <Form onSubmit={handleLogin} >
+        <Form.Field>
+          <label> Email </label>
+          <input name="email" type="email" placeholder="Email"/>
+        </Form.Field>
+        <Form.Field>
+          <label>Password</label>
           <input name="password" type="password" placeholder="Password" />
-        </label>
-        <button type="submit">Зарегестрироваться</button>
-      </form>
-    </div>
+        </Form.Field>
+  
+        <Button type='submit'>Войти</Button>
+      </Form>
+      </Container>
   );
 };
 

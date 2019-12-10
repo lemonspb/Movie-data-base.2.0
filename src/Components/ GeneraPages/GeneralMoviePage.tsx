@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react';
 import DataBaseServices from '../../Serviсes/DataBaseServiсes'
 import { MovieCard, Movie } from '../Cards/MovieCard'
 import {Container } from 'semantic-ui-react';
-
+import '../../index.scss'
 
 
  function GeneralMoviePage() {
@@ -22,7 +22,7 @@ import {Container } from 'semantic-ui-react';
         }, [])
 
     return (
-        <Container>
+        <Container className='d-flex'>
         {listFilms.map((film)=>(
 
         <MovieCard movie={film} key={film.id}/>

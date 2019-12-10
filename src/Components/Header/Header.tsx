@@ -1,6 +1,6 @@
 import React, {useState,useContext} from 'react'
-import { NavLink,withRouter } from 'react-router-dom'
-import { Menu ,Input, Container,Image } from 'semantic-ui-react';
+import { NavLink,withRouter, Link} from 'react-router-dom'
+import { Menu ,Input, Container,Image,Button,Icon } from 'semantic-ui-react';
 import app from '../../Serviсes/base'
 import { AuthContext } from "../../Auth/Auth";
 import './Header.scss';
@@ -42,7 +42,7 @@ setFilm(event.target.value)
 
     </NavLink>
 
-    <NavLink to='/person'  >
+    <NavLink to='/person' >
     <Menu.Item
     className='header-nav__item' 
     color='red'
@@ -57,6 +57,8 @@ setFilm(event.target.value)
          onClick={()=>{app.auth().signOut()}}
          />  :<NavLink to='/regist'>
            <Menu.Item
+                    className='header-nav__item' 
+
            name='регистрация'
            
            />
@@ -65,6 +67,8 @@ setFilm(event.target.value)
      {currentUser? null:
              <NavLink to='/login'>
              <Menu.Item
+                                 className='header-nav__item' 
+
              name='войти'
              
              />
@@ -92,15 +96,14 @@ className='header-nav__item header-nav__item--private'
 
     </Menu>
     <Container>
+      <div className='search-block'>
     <Input type='text' placeholder='Search...'
         onChange={getfilmName}
         value={film}
-        className='search-input'
-        >
-        
-        
+        className='search-input'>
       </Input>
-      <NavLink  to={`/search?q=${film}`} onClick={()=>{query(film)}}>Search</NavLink>
+      <Link  to={`/search?q=${film}`} onClick={()=>{query(film)}}><Button className='search-block__btn'><Icon disabled name='search'/></Button></Link>
+      </div>
      </Container>
     </>
       )
