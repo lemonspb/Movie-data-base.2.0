@@ -57,9 +57,9 @@ function MoviePage({ id }: { id: number }) {
                             userImg: commentRef[id][comment].userImg,
                             date: commentRef[id][comment].date
                         });
-                        console.log(arr)
-                        setListComments(arr)
                     }
+                    setListComments(arr)
+
                 });
         }
     }, [id]);
