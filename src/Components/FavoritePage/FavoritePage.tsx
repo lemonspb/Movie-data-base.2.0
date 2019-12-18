@@ -23,7 +23,8 @@ export function FavoritePage() {
 
         app.database().ref('users/').on('value', (snapshot) => {
             const listUsers = snapshot.val()
-            if (listUsers[currentUser.uid]) {
+            
+            if (listUsers) {
 
                 setListBestFilms(Object.entries(listUsers[currentUser.uid].films).map((el) =>  {
                     console.log(el)

@@ -26,7 +26,6 @@ const saveNewName = () =>{
 
 
 const setPhoto = (event:any) =>{
-    console.log(event.target.files)
     setImageName(event.target.files[0].name)
   const avatarStgRef =  app.storage().ref("Usuarios/" + currentUser.uid + `/${event.target.files[0].name}`).put(event.target.files[0]);
   avatarStgRef.then((snapshot)=>{
@@ -41,11 +40,15 @@ const setPhoto = (event:any) =>{
     });
 });
 }
-console.log(currentUser.displayName)
+
+useEffect(()=>{
+ 
+},[ ])
 
         return (
         <>
             <Container>
+              <div>Ваше имя:<span>{currentUser.displayName}</span></div>
       <Form>
       <Form.Field>
         <label> Извенить имя </label>

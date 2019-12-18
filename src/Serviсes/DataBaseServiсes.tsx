@@ -27,8 +27,8 @@ export default class DataBaseServiсes {
       return this._transformMovie(res);
     };
   
-    getPopularMovieList = async () => {
-      const res = await this.getResource('/movie/popular?');
+    getPopularMovieList = async (page:number=1) => {
+      const res = await this.getResource(`/movie/popular?&page=${page}`);
       return res
    
     };

@@ -27,13 +27,14 @@ return (
      <Link to={`/movie/${movie.id}`} className="card-movie">
          <div className="card-movie__inner">
         
-         <img src={`${imgUrl}${movie.poster_path }`}  alt={movie.title}/>
-         <div className='overlay'>
-         <div>{movie.title}</div>
-         <div>{movie.overview}</div>
-         {movie.release_date?<div>{releaseDate(movie.release_date)}</div>: null}
-         <Progress percent={movie.vote_average*10} color='green' />
-        {movie.vote_average*10}%
+         <img src={`${imgUrl}${movie.poster_path }`}  alt={movie.title} className='card-movie__img'/>
+         <div className='card-movie__overlay'>
+         <div className='card-movie__title'>{movie.title}</div>
+         <div className='card-movie__overview'>{movie.overview}</div>
+         {movie.release_date?<div className='card-movie__overview'>Премьера: {releaseDate(movie.release_date)}</div>: null}
+         <div className='card-movie__wrap-progress'><Progress percent={movie.vote_average*9.5} color='green'  className='card-movie__progress'/>
+        <div className='card-movie__number'>{movie.vote_average*10}%</div></div>
+          
         </div>
         </div>
 
