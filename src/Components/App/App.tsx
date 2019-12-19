@@ -1,5 +1,6 @@
 import React from 'react';
 import Search from '../Header/Header';
+import Footer from '../Footer/Footer';
 import PageSearch from '../PageSearch/PageSearch'
 import GeneralMoviePage from '../ GeneraPages/GeneralMoviePage'
 import MoviePage  from '../ DetailPages/MoviePage'
@@ -9,8 +10,9 @@ import LoginPage from '../RegistrationPage/LoginPage'
 import {FavoritePage} from '../FavoritePage/FavoritePage'
 import {PrivatePage } from '../Private/PrivatePage'
 import ErrorPage  from '../ErrorPage/ErrorPage'
-
+import './App.scss';
 import {BrowserRouter as Router,  Route,Switch, Redirect } from 'react-router-dom';
+
 const App: React.FC = () => {
 
 
@@ -20,6 +22,7 @@ const App: React.FC = () => {
        <AuthProvider>
       <Router>
     <Search />
+    <main className='contant'>
 <Switch>
     <Route  path='/search'  exact render={()=> <PageSearch /> }/>
     <Route  path='/regist/'  exact render={ ()=> <RegistrationPage />}/>
@@ -32,6 +35,8 @@ const App: React.FC = () => {
     <Route path='/error-page'  component ={ErrorPage} />
     <Redirect to='/error-page' />
     </Switch>
+    </main>
+    <Footer />
 </Router>
 </AuthProvider>
     </div>

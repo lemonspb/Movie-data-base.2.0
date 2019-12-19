@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import ru from 'date-fns/locale/ru';
 import { format } from 'date-fns'
 import { Progress } from 'semantic-ui-react';
+
+ 
+ 
 import './MovieCard.scss'
 export interface Movie {
         media_type: 'movie',
