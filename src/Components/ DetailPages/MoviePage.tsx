@@ -122,7 +122,7 @@ function MoviePage({ id }: { id: number }) {
                         })
                         : null}
                     <Form reply>
-                        <Form.TextArea onChange={onComment} />
+                        <Form.TextArea onChange={onComment} value={comment}/>
                         <Button content='добавить комментарий' labelPosition='left' icon='edit' primary onClick={addComment} />
                     </Form>
                 </Comment.Group>
