@@ -25,7 +25,7 @@ const saveNewName = () =>{
 }   
 
 
-const setPhoto = (event:any) =>{
+const setPhoto = (event:any) => {
     setImageName(event.target.files[0].name)
   const avatarStgRef =  app.storage().ref("Usuarios/" + currentUser.uid + `/${event.target.files[0].name}`).put(event.target.files[0]);
   avatarStgRef.then((snapshot)=>{
